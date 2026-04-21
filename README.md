@@ -63,6 +63,14 @@ python -m safeeyes_windows
 pip install pystray Pillow plyer && python -m safeeyes_windows
 ```
 
+### Using Startup Scripts
+
+For convenience, two startup scripts are provided in the repository:
+- `start_safeeyes.bat` (Batch script)
+- `start_safeeyes.ps1` (PowerShell script)
+
+These scripts automatically install any missing dependencies and run the application silently in the background (using `pythonw`). Simply double-click the `.bat` file to start SafeEyes without keeping a console window open.
+
 ## Usage
 
 ### System Tray Menu
