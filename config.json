@@ -1,0 +1,28 @@
+{
+    "short_break_interval": 15,
+    "long_break_interval": 75,
+    "short_break_duration": 15,
+    "long_break_duration": 60,
+    "pre_break_warning_time": 10,
+    "allow_postpone": true,
+    "postpone_duration": 5,
+    "strict_break": false,
+    "random_order": true,
+    "persist_state": true,
+    "shortcut_disable_time": 2,
+    "audible_alert": true,
+    "short_breaks": [
+        {"name": "Gently close your eyes"},
+        {"name": "Roll your eyes a few times to each side"},
+        {"name": "Rotate your eyes in clockwise direction"},
+        {"name": "Rotate your eyes in counterclockwise direction"},
+        {"name": "Blink your eyes"},
+        {"name": "Focus on a point in the far distance"},
+        {"name": "Have some water"}
+    ],
+    "long_breaks": [
+        {"name": "Walk for a while"},
+        {"name": "Lean back at your seat and relax"},
+        {"name": "Stand up and stretch your body"}
+    ]
+}
