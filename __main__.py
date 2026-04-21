@@ -21,8 +21,11 @@ def setup_logging(debug: bool = False) -> None:
 def ensure_single_instance() -> bool:
     """Ensure only one instance is running using a Windows mutex."""
     try:
-        mutex = ctypes.windll.kernel32.CreateMutexW(None, False, "SafeEyes_Windows_Mutex")
-        if ctypes.windll.kernel32.GetLastError() == 183:  # ERROR_ALREADY_EXISTS
+        _mutex = ctypes.windll.kernel32.CreateMutexW(  # noqa: F841
+            None, False, "SafeEyes_Windows_Mutex"
+        )
+        last_err = ctypes.windll.kernel32.GetLastError()
+        if last_err == 183:  # ERROR_ALREADY_EXISTS
             logging.warning("SafeEyes is already running!")
             return False
         return True

@@ -4,7 +4,7 @@ import json
 import logging
 import os
 import random
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -12,12 +12,14 @@ from typing import Any, Dict, List, Optional
 
 class BreakType(Enum):
     """Type of break."""
+
     SHORT_BREAK = 1
     LONG_BREAK = 2
 
 
 class State(Enum):
     """Application states."""
+
     WAITING = 1
     PRE_BREAK = 2
     BREAK = 3
@@ -28,6 +30,7 @@ class State(Enum):
 @dataclass
 class Break:
     """Represents a single break."""
+
     type: BreakType
     name: str
     time: int  # interval in minutes

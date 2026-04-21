@@ -6,7 +6,6 @@ Covers all monitors with a dark overlay showing the break message and countdown.
 
 import logging
 import tkinter as tk
-from tkinter import font as tkfont
 from typing import Callable, Optional
 
 from safeeyes_windows.model import Break
@@ -38,7 +37,12 @@ class BreakScreen:
         self.strict_break: bool = False
         self.shortcut_disable_time: int = 2
 
-    def show(self, break_obj: Break, allow_postpone: bool = True, strict_break: bool = False) -> None:
+    def show(
+        self,
+        break_obj: Break,
+        allow_postpone: bool = True,
+        strict_break: bool = False,
+    ) -> None:
         """Show fullscreen break overlay on all monitors."""
         self.allow_postpone = allow_postpone
         self.strict_break = strict_break
@@ -197,8 +201,14 @@ class BreakScreen:
             self._postpone_buttons.append(btn_postpone)
 
         # Keyboard bindings
-        win.bind("<Escape>", lambda e: self._on_skip() if self._buttons_enabled else None)
-        win.bind("<space>", lambda e: self._on_postpone() if self._buttons_enabled else None)
+        win.bind(
+            "<Escape>",
+            lambda e: self._on_skip() if self._buttons_enabled else None,
+        )
+        win.bind(
+            "<space>",
+            lambda e: self._on_postpone() if self._buttons_enabled else None,
+        )
 
         # Focus the window
         win.focus_force()

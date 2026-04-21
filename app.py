@@ -6,11 +6,10 @@ notifications, and audio alerts.
 
 import datetime
 import logging
-import threading
 import tkinter as tk
 from typing import Optional
 
-from safeeyes_windows.model import Break, Config, State
+from safeeyes_windows.model import Break, Config
 from safeeyes_windows.core import SafeEyesCore
 from safeeyes_windows.break_screen import BreakScreen
 from safeeyes_windows.tray import TrayIcon
@@ -159,13 +158,18 @@ class SafeEyesApp:
 
         def _show_break():
             if self._break_screen:
-                self._break_screen.allow_postpone = self.config.get("allow_postpone", True)
-                self._break_screen.strict_break = self.config.get("strict_break", False)
-                self._break_screen.shortcut_disable_time = self.config.get("shortcut_disable_time", 2)
+                allow = self.config.get("allow_postpone", True)
+                strict = self.config.get("strict_break", False)
+                disable_t = self.config.get(
+                    "shortcut_disable_time", 2
+                )
+                self._break_screen.allow_postpone = allow
+                self._break_screen.strict_break = strict
+                self._break_screen.shortcut_disable_time = disable_t
                 self._break_screen.show(
                     brk,
-                    allow_postpone=self.config.get("allow_postpone", True),
-                    strict_break=self.config.get("strict_break", False),
+                    allow_postpone=allow,
+                    strict_break=strict,
                 )
 
         self._safe_tk_call(_show_break)

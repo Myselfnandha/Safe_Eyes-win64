@@ -6,7 +6,7 @@ import threading
 from typing import Callable, Optional
 
 import pystray
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw
 
 logger = logging.getLogger(__name__)
 
@@ -80,7 +80,7 @@ class TrayIcon:
         self._on_settings = on_settings
         self._on_quit = on_quit
 
-        self._icon: Optional[pystray.Icon] = None
+        self._icon: Optional[pystray.Icon] = None  # type: ignore[no-any-unimported]
         self._enabled: bool = True
         self._status_text: str = "Starting..."
         self._next_break_text: str = ""
@@ -132,7 +132,7 @@ class TrayIcon:
             self._icon.title = f"SafeEyes - {self._next_break_text}"
             self._icon.menu = self._build_menu()
 
-    def _build_menu(self) -> pystray.Menu:
+    def _build_menu(self) -> pystray.Menu:  # type: ignore[no-any-unimported]
         """Build the right-click context menu."""
         items = [
             pystray.MenuItem(

@@ -51,7 +51,12 @@ class SettingsDialog:
         scrollbar = ttk.Scrollbar(win, orient="vertical", command=canvas.yview)
         content = tk.Frame(canvas, bg="#1a1b26", padx=30)
 
-        content.bind("<Configure>", lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        content.bind(
+            "<Configure>",
+            lambda e: canvas.configure(
+                scrollregion=canvas.bbox("all")
+            ),
+        )
         canvas.create_window((0, 0), window=content, anchor="nw", width=490)
         canvas.configure(yscrollcommand=scrollbar.set)
 
@@ -59,16 +64,18 @@ class SettingsDialog:
         scrollbar.pack(side="right", fill="y")
 
         # Variables for settings
-        vars_dict = {}
+        vars_dict: dict[str, tk.IntVar | tk.BooleanVar] = {}
 
         def add_section(title: str) -> None:
             tk.Label(
                 content, text=title, font=("Segoe UI", 13, "bold"),
-                fg="#7aa2f7", bg="#1a1b26", anchor="w", pady=(15, 5)
-            ).pack(fill="x")
+                fg="#7aa2f7", bg="#1a1b26", anchor="w"
+            ).pack(fill="x", pady=(15, 5))
             tk.Frame(content, bg="#3b4261", height=1).pack(fill="x", pady=(0, 10))
 
-        def add_spinner(label: str, key: str, from_: int, to: int, unit: str = "") -> None:
+        def add_spinner(
+            label: str, key: str, from_: int, to: int, unit: str = "",
+        ) -> None:
             frame = tk.Frame(content, bg="#1a1b26")
             frame.pack(fill="x", pady=4)
             display = f"{label} ({unit})" if unit else label

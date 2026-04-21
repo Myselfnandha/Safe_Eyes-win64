@@ -20,7 +20,8 @@ def _play_sound(filename: str) -> None:
     def _do_play():
         try:
             import winsound
-            winsound.PlaySound(str(filepath), winsound.SND_FILENAME | winsound.SND_ASYNC)
+            flags = winsound.SND_FILENAME | winsound.SND_ASYNC
+            winsound.PlaySound(str(filepath), flags)
         except Exception as e:
             logger.warning("Failed to play sound: %s", e)
 

@@ -6,9 +6,9 @@ Replaces GLib.timeout_add_seconds with threading.Timer for Windows compatibility
 import datetime
 import logging
 import threading
-from typing import Callable, List, Optional
+from typing import Callable, Optional
 
-from safeeyes_windows.model import Break, BreakQueue, BreakType, Config, State
+from safeeyes_windows.model import Break, BreakQueue, Config, State
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +38,9 @@ class SafeEyesCore:
         self.on_start_break: Optional[Callable[[Break], None]] = None
         self.on_countdown: Optional[Callable[[int, int], None]] = None
         self.on_stop_break: Optional[Callable[[], None]] = None
-        self.on_update_next_break: Optional[Callable[[Break, datetime.datetime], None]] = None
+        self.on_update_next_break: Optional[
+            Callable[[Break, datetime.datetime], None]
+        ] = None
 
     def initialize(self, config: Config) -> None:
         """Initialize from config."""
